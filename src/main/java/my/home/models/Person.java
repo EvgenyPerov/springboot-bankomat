@@ -34,7 +34,7 @@ public class Person {
 
     @OneToMany(mappedBy = "ownerOfDeposit", cascade = CascadeType.ALL, orphanRemoval = true)
 //    @Column(name = "deposit_id")
-    private List<Deposit> depositsList = new ArrayList<>();
+    private List<Deposit> depositsList; // = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     private Role role;

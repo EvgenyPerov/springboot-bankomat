@@ -2,6 +2,7 @@ package my.home.services;
 
 import my.home.forms.SignUpForm;
 import my.home.forms.UpdateForm;
+import my.home.models.Deposit;
 import my.home.models.Person;
 import my.home.models.Role;
 import my.home.models.State;
@@ -38,7 +39,7 @@ public class PersonServiceImpl implements PersonService {
                 .lastName(form.getLastName())
                 .password(hashPassword)
                 .login(form.getLogin())
-//                .depositsList(new ArrayList<Deposit>()) // может не принимать нул, и нужно будет создать список
+                .depositsList(new ArrayList<Deposit>()) // может не принимать нул, и нужно будет создать список
                 .role(Role.USER)
                 .state(State.ACTIVE)
                 .build();
@@ -65,10 +66,10 @@ public class PersonServiceImpl implements PersonService {
 
     public void updateRoleOrState(UpdateForm form){
         Person person = repository.findOneById(form.getId());
-
+        System.out.println(form.getId()+" "+ form.getRole()+" "+ form.getState());
         person.setRole(form.getRole());
         person.setState(form.getState());
-        System.out.println(person);
+//        System.out.println(person);
         repository.save(person);
 
 //        repository.updateOneById(form.getId(), form.getRole(),form.getState());

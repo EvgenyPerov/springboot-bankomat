@@ -40,6 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signUp/**").permitAll()
                 .antMatchers("/welcome/").authenticated()
                 .antMatchers("/addMoney/").authenticated()
+                .antMatchers("/getMoney/").authenticated()
+                .antMatchers("/getStatus/").authenticated()
 //                .antMatchers("/css/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

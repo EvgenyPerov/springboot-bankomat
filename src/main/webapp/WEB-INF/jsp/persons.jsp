@@ -86,7 +86,9 @@
 
          <button class="btn btn-primary" type="submit"> Принять изменения </button>
      </form>
-      <br/>
+
+     <br/>
+
         <table>
 
             <tr>

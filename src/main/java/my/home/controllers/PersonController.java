@@ -26,7 +26,7 @@ public class PersonController {
 
     @GetMapping("/persons")
     public String getPersonsPage(ModelMap model) {
-        System.out.println(myProperty);
+        System.out.println(myProperty + " страница со списком клиентов");
 //        Arrays.asList(Role.values()).forEach(x-> System.out.println(x));
 
         model.addAttribute("personsFromServer", service.findAll());
