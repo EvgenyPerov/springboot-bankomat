@@ -1,5 +1,6 @@
 package my.home.services;
 
+import my.home.app.Solution;
 import my.home.forms.SignUpForm;
 import my.home.forms.UpdateForm;
 import my.home.models.Deposit;
@@ -8,6 +9,7 @@ import my.home.models.Role;
 import my.home.models.State;
 import my.home.repositories.ClientsRepository;
 import my.home.repositories.DepositsRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import java.util.List;
 
 @Service
 public class PersonServiceImpl implements PersonService {
+
+    private static final Logger logger = Logger.getLogger(PersonServiceImpl.class);
 
     @Autowired
     private ClientsRepository repository;
@@ -43,6 +47,12 @@ public class PersonServiceImpl implements PersonService {
                 .role(Role.USER)
                 .state(State.ACTIVE)
                 .build();
+        logger.info("Добавлен клиент имя = " + form.getFirstName()
+                  + ", фамилия = " + form.getLastName()
+                  + ", логин = " + form.getLogin()
+                  + ", роль = " + Role.USER
+                  + ", статус = " + State.ACTIVE
+        );
 
         repository.save(person);
     }
@@ -59,33 +69,17 @@ public class PersonServiceImpl implements PersonService {
         return idList;
     }
 
-//    @Override
-//    public Optional<Person> findOne(Long personId) {
-//        return repository.findOneById(personId);
-//    }
-
     public void updateRoleOrState(UpdateForm form){
         Person person = repository.findOneById(form.getId());
-        System.out.println(form.getId()+" "+ form.getRole()+" "+ form.getState());
+//        System.out.println(form.getId()+" "+ form.getRole()+" "+ form.getState());
         person.setRole(form.getRole());
         person.setState(form.getState());
-//        System.out.println(person);
+        logger.info("Изменен клиент ID#  " + form.getId()
+                + " Новая роль  " + form.getRole()
+                + " Новый статус  " + form.getState()
+        );
         repository.save(person);
 
-//        repository.updateOneById(form.getId(), form.getRole(),form.getState());
-
     }
-
-//    public void addDeposit(AddDepositForm form, Person person) {
-//        Deposit deposit= depositService.createDeposit2(form);
-//          System.out.println(deposit);
-//        deposit.setOwnerOfDeposit(person);
-// //       depositsRepository.save(deposit);
-//         System.out.println(deposit);
-//               person.addDeposit(deposit);
-//                 System.out.println(deposit);
-//        person.getDepositsList().add(deposit);
-//        repository.save(person);
-//    }
 
 }

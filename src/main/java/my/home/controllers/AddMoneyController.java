@@ -1,5 +1,6 @@
 package my.home.controllers;
 
+import my.home.app.Solution;
 import my.home.forms.DepositForm;
 import my.home.models.Currency;
 import my.home.security.details.UserDetailsImpl;

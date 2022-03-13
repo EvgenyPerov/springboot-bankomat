@@ -38,7 +38,6 @@ delete from clients where id=11;]]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="f2f27137-d4b8-4347-b708-308a515341c9" object-ref="schemas/public/tables/deposits" />
       <object connection-id="f2f27137-d4b8-4347-b708-308a515341c9" object-ref="schemas/public/tables/clients" />
     </open-files>
   </component>

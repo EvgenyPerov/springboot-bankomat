@@ -1,18 +1,29 @@
 package my.home.app;
 
-import java.util.Arrays;
+import org.apache.log4j.Logger;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.StampedLock;
-import java.util.stream.IntStream;
 
 public class Solution {
+
+    private static final Logger logger = Logger.getLogger(Solution.class);
+
+//    public boolean processTask(Task task) {
+//        logger.trace("process task id = " + task.getId());
+//        try {
+//        task.start();
+//        task.progress();
+//        task.complete();
+//        return  true;
+//        }
+//        catch (Exception e){
+//            logger.error("Unknown error for me ", e);
+//            return false;
+//        }
+//    }
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         Runnable task = new Runnable() {
@@ -160,6 +171,8 @@ public class Solution {
 //        executor5.submit(solution.task5);
         for (int i=0; i<10; i++) {
             executor5.submit(solution.task6);
+  //          logger.log(Level.INFO, "log = "+i);
+
         }
         executor5.shutdown();
 
@@ -201,9 +214,11 @@ public class Solution {
             permit = semaphore.tryAcquire(1, TimeUnit.SECONDS);
             if (permit){
                 System.out.println("Semaphore acquired");
+                logger.info("Это информационное сообщение!");
                 TimeUnit.MILLISECONDS.sleep(1200);
             }  else {
             System.out.println("Could not acquire semaphore");
+                logger.error("Это ошибка!");
              }
         } catch (InterruptedException e) {
             throw new IllegalStateException(e);
@@ -222,6 +237,7 @@ public class Solution {
 //            return result;
 //        };
 //    }
+
 
 
 
